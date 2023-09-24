@@ -1,0 +1,958 @@
+
+emilyhobbs says Hello and welcome to the <#798164802438561832>  channel
+
+Feel free to reach out to the 1inch Team at any point with your questions! 🙌
+
+cc <@!337604738763849741>
+platocrat says Question/Recommendation:  added NXM (probably by adding the contract address) to 1inch but then realized that NXM (the *unwrapped* version) only has liquidity on NexusMutual's native dapp. I think it would be great, even for tokens similar to NXM, **to have a caution/warning modal that notifies the user that they will find NO liquidity**, or **restrict trading on such tokens**.
+ Having either of these on the UI side would help users with less knowledge about tokens they're holding
+platocrat says (<@!594174776679858196> <@!337604738763849741> can also put this into a GitHub issue, if that's easier)
+thecreative.eth says Hello 1inch team, its a pleasure to meet you guys!
+.skywinder says Hello eveyone from 1inch team! Let's get rock DeFi space!
+0xmikko says Hi, guys! Nice to meet you here!
+Natalia | 1inch says hi everyone! happy to meet y'all 🙂
+thecreative.eth says Does 1inch have a Discord channel 🤔
+juwu says Hi! Does 1inch have a subgraph? Or is the API the main source of data? Thanks
+https://api.1inch.exchange/v2.0/swagger/
+jacobw says <@!510348889379831812> : https://thegraph.com/explorer/subgraph/1inch-exchange/one-inch-v2
+juwu says nice!! thank you <@!233245979548188673>
+.skywinder says good point. about this it' better to send message to our support channel: https://discord.gg/saEZuJZV
+.skywinder says Here is a list of 1inch bounties:
+
+1. Leverage on AAVE using Flashloan and 1inch swap ($3,000 in 1INCH tokens):
+    - Example of 3x ETH over USDC long position leverage. Convert user's $1k USDC into $3k ETH collateral and $2k USDC debt. Can be assembled in single transaction:
+        1. Get $2k USDC Flashloan
+        2. Convert it to ETH using 1inch API
+        3. Put $3k USDC as collateral to AAVE
+        4. Borrow $2k USDC from AAVE
+        5. Repay Flashloan with $2k USDC
+
+
+2. AAVE liquidation protection bot ($3,000 in 1INCH tokens):
+    - Track cost of collateral and debt using Chainlink. When PnL reaching user-defined boundaries (stop-loss and take-profit). Can be assembled in single transaction:
+      1. Get Flashloan eqaul to debt
+      2. Repay user debt
+      3. Swap user's collateral to debt using 1inch API
+      4. Repay Flashloan
+
+3. Create long and short synths for $1INCH token using UMA Protocol ($1,000 in 1INCH tokens)
+
+4. Open track ($1,000 in 1INCH tokens)
+    - Surprise us! ༼ʘ̚ل͜ʘ̚༽
+    - Just BUIDL on top of 1inch whatever you want!
+.skywinder says https://twitter.com/1inchExchange/status/1350064732410146819
+.skywinder says Sergej in Live Stream about 1inch bounties:
+https://youtu.be/8EjHhjGFWZg?t=4022
+sunnyrk says Hello, is there a 1inch subgraph on the thegraph
+sunnyrk says ?
+juwu says https://thegraph.com/explorer/subgraph/1inch-exchange/one-inch-v2
+sunnyrk says <@!510348889379831812> thank you 🙂
+juwu says Hey 1inch team! <@!736709108757168211> and I are wondering if it's possible to get the creation time of a token from 1inch's subgraph. Not seeing it in the `Token` query
+sunnyrk says Hi 1inch team,
+I was not able to see the data for daily timestamp how much liquidity were in the pool pair on your subgraph... 
+I am follwing this subgraph `https://thegraph.com/explorer/subgraph/1inch-exchange/one-inch-v2`
+i want to calculate ROI and asset change in different time span for past...
+Marco says hey, I'm looking at the leverage on AAVE with flashloan and 1inch swap bounty, I have a doubt
+
+by "2. Convert it to ETH using 1inch API" I guess you mean to exec the trade through swap() in 1inch.exchange v2 contract deployed at 0x111111125434b319222CdBf8C261674aDB56F3ae right?  is there any documentation for the v2 contracts like the one for v1?
+emilyhobbs says cc <@!430518305669775401> 👀
+artspark says Hi there, I'm thinking of a system where users have a certain amount deposited with AAVE, and then can switch which token they have deposited on the fly using 1Inch. My questions are 1) This is just as simple as using 1inch to swap from one interest bearing token to another, right? 2) Are there any slippage or other risks in swapping I should disclose to my users, and how might I quantify that for them? 3) The main purpose of this is so that users can swap to the token producing the most yield at any time, but is there some kind of token one can hold that will automatically do this for them?
+jamestheory says Hi I was wondering if in the 1inch subgraph, `tradeVolume` and `tradeCount` are based on a rolling 24 hour window or something along those lines?
+juwu says and to follow up on this, the results from a query like the one below are a bit odd. For ETH, it shows 5 for `tradeCount` and 0.44 for `tradeVolume`
+```
+{
+  tokens(first:10) {
+    id
+    symbol
+    name
+    tradeVolume
+    tradeCount
+  }
+}
+```
+cc <@!430518305669775401>  thanks!
+.skywinder says <@490960786668257303>
+Kirill | 1inch says 3. I don't know such tokens 2. you can fetch usd prices, for example, from coingecko, and look at src and dest token usd amounts 1. yes, it's simple swap
+Kirill | 1inch says https://docs.1inch.exchange/api/
+Kirill | 1inch says you can query like: timestamp_gt and timestamp_lt (or using block numbers)
+Marco says hey <@!490960786668257303> I've checked that thanks, so do you mean that to integrate 1inch exchange v2 inside my smart contract I need to first use the api to get the transaction data and then pass that data to my contract which will exec the transaction?
+
+if that's the case, how can I integrate that with a flashloan considering that when calling the api I will always get an error for not enough allowance/balance?
+lherskind says Following along here, have a similar issue. To just test I have tried doing a swap from eth, and that works just fine if you provide the calldata from the api to the contract (see below)   
+```
+function swapEth(bytes calldata oneinchdata) public payable {
+    address inch = address(0x111111125434b319222CdBf8C261674aDB56F3ae);
+    (bool success, ) = inch.call{value: msg.value}(oneinchdata);
+    require(success, "1inch call failed");
+}
+```
+artspark says Thank you!
+arkeo01 says Hello 1INCH Team!
+I am Aniket, participating in MarketMake. I'd just graduated from Indian Institute of Technology Jodhpur and I am on a journey to master web3 dev. I am very inspired by your journey as to how a project can go from ETH New York to being a real-world product with such a high trading volume.
+I found the 1Inch bounties for Market make to be interesting. Particularly the liquidation bot bounty. I feel this bot would have great utility to a regular user of defi and would also help me master working with multiple protocols at once.
+I am not an experienced web3 dev, and would rate myself as 6 out of 10. Hence, I would really appreciate your help as to how should I go about developing this bot? What resources would you suggest I look into at the start? Let me know if I can DM someone in order to get guidance related to this...
+Kirill | 1inch says yes, you can. You need to set fromAddress to your contract address and set disableEstimate=true
+Kirill | 1inch says https://docs.1inch.exchange/api/
+great_filter says Hi 1inch team. Our team is looking at #2. AAVE liquidation protection bot. What's the value add of this over Aavetomation?  https://medium.com/defi-saver/aavetomation-is-now-live-with-automatic-liquidation-protection-and-leveraging-available-c5c293f3f16e
+Kirill | 1inch says I think this project doing protection against liquidating your possition
+Kirill | 1inch says But 1inch allows you liquidate positions
+great_filter says Implementing on 1inch seems very much possible, but aavetomation has very similar functionality. Not really clear what the difference would be.
+t_snark says Hi folks, where are the docs for the v2 smart contracts? I don't mean the API but the actual contract for on-chain integration.
+Kirill | 1inch says It's impossible to integrate onchain contract with interfaces. You need to fetch calldata from API and make a low lvl solidity call with this calldata
+t_snark says Gotcha. That doesn't work with my use case. Is v1 going to stick around?
+Kirill | 1inch says No, only latest v2
+juwu says Hi! in the 1inch subgraph, are the `tradeVolume` and `tradeCount` based on the last 24 hours? https://thegraph.com/explorer/subgraph/1inch-exchange/one-inch-v2
+cc <@!490960786668257303>
+Kirill | 1inch says total means for all time
+.lucasev says 1inch has testnet version?
+happiechappie says <@!490960786668257303> is 1inch in kovan testnet ?
+ducklover22 says Wondering this too. I'd like to test some swaps on the testnet.
+emilyhobbs says ^^^^^^^
+
+<@!497325359314763776> 👀
+jawe.eth says 🧐
+jawe.eth says is there a kovan testnet for 1inch
+jawe.eth says Find this guide: https://help.1inch.exchange/en/articles/4776221-how-to-migrate-liquidity-from-uniswapv2-and-sushiswap
+jawe.eth says You can use fork mainnet with specific block number for tests and develop (example, howto - https://medium.com/@samajammin/how-to-interact-with-ethereums-mainnet-in-a-development-environment-with-ganache-3d8649df0876)
+jawe.eth says Try this https://support.chainstack.com/hc/en-us/articles/900001783063-Forking-Ethereum-mainnet-with-Ganache-CLI
+ducklover22 says Ah. I had no clue that is what everybody meant by 'forking'. That's super helpful. Thank you!
+jawe.eth says Copy, paste on your computer run as localhost
+jawe.eth says GitHub 🍴 Fork ?
+great_filter says We're trying to do a 1inch swap inside a flash loan. The API errors on our swap requests because the fromToken isn't available until after the flash loan begins. Is there a way to disable the API checks or do you have any suggestions? (we could try to get calldata before the flash loan, but can't because of the API checks the amount.)
+Marco says disableEstimate=true
+juwu says Hi 1inch team! question about this API endpoint: https://api.1inch.exchange/v2.0/swagger/#/Quote%2FSwap/getQuote
+what exactly is the data returned in the `protocols` field? 
+try a query like this one, for example: https://api.1inch.exchange/v2.0/quote?fromTokenAddress=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee&toTokenAddress=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&amount=199
+
+cc <@!490960786668257303>
+0xgaby says Hi <@!490960786668257303> , our team is working on a vesting platform. We would like to ask for your feedback on a standard implementation of a Vesting contract. Kartik shared with me that you did your token distribution recently and may help us
+belac says Can you share a link to the code?
+.skywinder says send us a link to your project, or tell your idea
+cyrillicw says Can anybody show example of calling 1inch swap from Solidity?
+.skywinder says Hi, Julia. Will come back to you. 
+<@!490960786668257303> <@!324456391186186242>
+.skywinder says there is some nice examples available on our past Gitcoin hackhaton:
+https://gitcoin.co/hackathon/gr8/?org=1inch-exchange
+belac says as described in the docs, the protocols is the route of the trade https://docs.1inch.exchange/api/quote-swap
+juwu says <@!430518305669775401> <@!243162625007943681> thank you! I found what I needed in the docs
+cyrillicw says But they use 1inch v1, should we use 1inch v2?
+0xgaby says Hi <@!243162625007943681> <@!430518305669775401> here is our project repo: https://github.com/1Hive/Vested/pull/22
+0xgaby says And a discussion for the contract implementation: https://github.com/1Hive/Vested/discussions/19
+0xgaby says For context, our idea: 
+"Vested allows Promoters to distribute vested tokens via airdrops and/or discounted exchange. Promoters can deposit tokens, set up eligibility criteria, and offer distribution terms. Eligible users can perform actions to claim vested tokens and withdraw them over time."
+cyrillicw says Can I use 1inch with my own tokens if they are not deployed in Main Net but in my fork?
+zkkirol says Hey guys, I'm looking for smart contracts addresses on mainnet used by 1INCH. I cannot find it on website and github. Could someone please let me know where can I find verified addresses ? thanks !
+gge says is 1INCH available on Kovan? I'd like to try testing some stuff related to aave and 1inch on a testnet
+ducklover22 says No. However, I found that forking mainnet using hardhat or ganache was WILDLY easier than messing with testnet. If you feel like it, it might be worth a try.
+zkkirol says could someone please verify the address ?
+ducklover22 says Any ideas why the 1proto.eth contract gives me an expected return of 0 when I try to swap aUSDC to DAI?
+belac says You're most likely using the new aUSDC, which isn't supported as AAVE v2 hasn't been implemented into 1proto.eth yet
+belac says Hello, what addresses do you need?
+
+We have the exchange (which needs the API to be used https://docs.1inch.exchange/api/)
+0x111111125434b319222CdBf8C261674aDB56F3ae
+
+on chain aggregation at https://etherscan.io/address/1proto.eth
+And
+https://etherscan.io/address/1split.eth
+(along with their github here https://github.com/1inch-exchange/1inchProtocol)
+xbalbinus says Hi 1Inch team! I wanted to know how to integrate with your Swap feature. How might I do that?
+belac says on the 1inch.exchange v2 router correct? or are you looking at 1proto.eth or 1split.eth?
+xbalbinus says Yep! the v2 router
+belac says I'm going to have to tag <@!490960786668257303> 
+
+But if I had to guess (since I haven't ever worked with this).
+ 
+A) you need to use web3.js or web3.py
+A') don't forget to approve the tokens
+B) You MUST use the API to get specific data to pass to the 1inch router contract
+C) you must build a transaction for web3 passing the parameters value, from, and data to the 1inch router. this transaction built with web3
+
+Here is the api: https://docs.1inch.exchange/api/quote-swap
+router: https://etherscan.io/address/0x111111125434b319222CdBf8C261674aDB56F3ae#writeProxyContract
+k8989 says Let's say I take a flashloan of 1 Eth from Aave, exploit some arbitrage opportunity, and now I want to swap back to Eth to pay off the flash loan. Is there any method on 1inch  like swapTokensForExactTokens to get back exactly 1 Eth.
+nyanloutre says Hello, when using Ganache how can I use the 1inch API to generate the transaction data ? As it is checking the balance of the from address, which will be zero as I work on a fork, it will return in error.
+belac says disableEstimate=true 
+
+according to comments above. I'm not exactly sure how it works.
+belac says There is not. you'll have to make sure the estimated return amount - slippage % is > 1 ETH 
+(Since aggregating in reverse is difficult for non-AMM liquidity sources)
+nyanloutre says OK I will try this
+xbalbinus says <@!243162625007943681> Would you mind letting me know how to incorporate the API into my blockchain project? I'm a very new coder
+belac says I don't code blockchain/web3. I'm not sure how to.
+xbalbinus says All good, thanks a ton still for the help!
+k8989 says My project involves leveraging on Aave using 1inch. Aave is available on the testnet but 1inch isn't. Is my only choice to submit on the mainnet? It won't be a smooth experience as anyone trying out the project will be hesitant to send actual tokens to an unaudited contract and will also need to pay gas fees. Can I rather deploy my contracts using a hosted hardhat node (mainnet forked) in my final submission? Anyone can then access my web app by simply connecting their metamask wallet to my hosted hardhat network config and smoothly test out all the utilities.
+.skywinder says hi. you are right. 
+ we don't have testnet. but it would be a great hack option for open track bounty! 👍
+gge says does 1split.eth still worth? I heard it was deprecated
+k8989 says Isn't there a separate prize for leveraging on Aave using 1inch swap? It's there in the prizes section of marketmake info center.
+belac says 1split.eth and 1proto.eth should still work
+nyanloutre says Hello, is there any way to do something like uniswap function swapTokensForExactTokens ?
+I would like to be sure of how much a specific token I will get.
+nyanloutre says Else I have to take slippage into account which add complexity
+belac says There is no way to do that since non-AMM's don't have a function to do this, making the calculations more comples.
+nyanloutre says OK, thank you !
+nyanloutre says I have 500 errors with the API, is there something going on ?
+belac says Yes, something with cloud flare/ our servers. hang tight while we fix the problem
+nyanloutre says OK, good luck with the fix
+jamestheory says Hey <@!337604738763849741> <@!430518305669775401> thanks for your support. We ended up using the 1inch subgraph and 1inch APIs for our project Poolside (https://poolside.finance)
+ducklover22 says And a thanks to <@243162625007943681> for the help during the hackathon too! My team used 1Inch's 1proto.eth contract to do a swap in our project, The Watchful Eye. Hope some of you are there for judging tomorrow!
+juwu says here's our submission! 🙂  
+cc <@!243162625007943681> 
+https://hack.ethglobal.co/showcase/poolside-recGuqsPimagdF4Cd
+chimeradefi says Hey 1inch, any possibility we could get some help getting SGT & vETH2 listed on 1inch? We have vETH2 on zapper already. 
+vETH2: https://etherscan.io/address/0x898bad2774eb97cf6b94605677f43b41871410b1
+SGT: https://etherscan.io/address/0x84810bcf08744d5862b8181f12d17bfd57d3b078
+belac says sure! I'll forward this to who's able to do this
+chimeradefi says ❤️ thank you
+belac says hmm, is there any chance you can get them listed on coingecko, we need them there since we pull price data from their API
+chimeradefi says Sure! Will reach out to coingecko
+_timothea says Hey wasnt there a prize for 1inch synthetic uma token?
+0xtuba says <@!324456391186186242>
+_timothea says <@430518305669775401>
+reddyismav says Hey 1inch guys, 
+This is team LevAave. We were one of the finalists.
+We applied for the 1inch bounty where we had to open long and short positions using flash loans.
+We can OPEN both long and short positions and also CLOSE them. We are just a little surprised on not winning the bounty.
+
+Mantis can just open a long position. No Shorting or closing positions. 
+On the UI side too,  we feel we were quite better. 
+On the gas price too, we were somewhere around 950k. Mantis has a gas price of 1.6 million. 
+
+Just a little surprised, and we were wondering if you guys missed checking out our project. 
+https://hack.ethglobal.co/showcase/levaave-recg0JdVMPHv70W89
+great_filter says Hi 1inch, thank you so much for sponsoring some interesting projects here. Our team's project "AAVE Liquidation Protection" (https://hack.ethglobal.co/showcase/aave-liquidation-protection-recqcWamtrRVw84Xo) appears to be on the list of winners. It says there to reach out to sponsors to collect prizes. Is this the right place? Thanks again!
+jacobw says We'll be connecting you <@!771043879922696222>
+MylesPS says Hello 1inch team,
+
+My name is Myles Sherman and I'm from Contract - the team you picked for the MarketMake hackathon for your Open Track prize pool. 
+
+Please reach out to me so we can discuss our project and to collect prizes.
+
+Thanks,
+Myles
+MylesPS says <@&687455698820530261> ^
+liam.eth says Forwarded to Sergej
+dearnadia says Hey guys! I’m here to fix all issues with prizes distribution <:stickers_004:758981992401993769> Please, contact me directly via email nadia@1inch.exchange
+
+Write your name, name of the team, link to showcase and your Ethereum address 🙏🏻
+emilyhobbs says Hello and welcome to the <#798164802438561832> channel
+
+Feel free to reach out to the Team at any point with your questions! 🙌
+
+cc <@!418840881358176257><@!490960786668257303> <@!243162625007943681>
+emilyhobbs says Hey everyone! 👋 
+
+Just wanted to drop a quick intro & overview for 1inch!
+
+👀 **About**
+**The 1inch Network** unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space.
+
+The initial protocol of the 1inch Network is a DEX aggregator solution that searches deals across multiple liquidity sources, offering users better rates than any individual exchange. This protocol incorporates the Pathfinder algorithm which finds the best paths among different markets over more than 49 liquidity sources on Ethereum and 12 liquidity sources on Binance Smart Chain. In less than two years the 1inch DEX aggregator surpassed $30B in overall volume.
+
+The 1inch Aggregation Protocol facilitates cost-efficient and secure swap transactions across multiple liquidity sources.
+
+The 1inch Liquidity Protocol is a next-generation automated market maker that protects users from front-running attacks and offers attractive opportunities to liquidity providers.
+
+🏆 **Prize Overview**
+**1inch Network will award 5,000 USD in 1INCH:**
+
+**Mesh network using Web RTC for exchange of limit orders of different protocols**
+
+- ***First place:*** 2,500 USD in 1INCH
+- ***Runner-up:*** 1,500 USD in 1INCH
+
+**Open track**
+
+- ***One prize for the most innovative project:*** 1,000 USD in 1INCH
+
+**See more on Prizes here:** 
+https://www.notion.so/ethglobal/Prizes-Scaling-Ethereum-1d3a6c2966dd4d8fa679d78890f2f8a6
+
+🔗** Important Links**
+
+**Documentation:**
+https://api.1inch.exchange/swagger/binance/
+
+https://api.1inch.exchange/swagger/ethereum/
+
+https://docs.1inch.io/api/
+
+**1Inch API:**
+https://1inch.exchange/#/api
+
+**Github:**
+https://github.com/1inch/1inchProtocol
+emilyhobbs says 
+drkp4 says hi! this is super interesting to me, have background in finance (ib, pe, hedge funds), into music and generative art production, as well as scaling eth of course! can speak python/haskell
+dearnadia says Hey <@!615672360758018147> ! Nice to meet you <:stickers_004:758981992401993769> Feel flee to ask any questions
+dearnadia says 🛠 Watch **1inch API workshop** by Kirill Kuznetcov, Lead Blockchain Engineer: https://youtu.be/JSWnUPgoFrE
+liam.eth says 1inch + L2 = killer IMO
+juwu says Is 1inch on L2 / do you have any ongoing plans?
+Swagger docs look awesome. But it looks like the API is mainly for reads? Curious if there are ways to programmatically add liquidity to a 1inch pool
+
+cc <@!760576119778443294>
+juwu says similar question: https://www.reddit.com/r/1inch/comments/l822ty/can_loopring_layer_2_dex_be_integrated_on_1inch/
+Shelvak says Hi guys, do you have an exchange  in polygon mumbai (testenet) or planning to implement something over polygon?
+vijaypravin says Hey 1inch team, thanks for rewarding AgentRansack as the most innovative project 🙂 🙏🏽
+o6_6o says From all the team members at Azulo, we want to say a huge thank you to everyone at 1inch for awarding us the most innovative project alongside team AgentRansack, we appreciate it so much.  👏
+Catherine says 
+emilyhobbs says Hello and welcome to the <#798164802438561832> channel!
+
+Feel free to reach out to the Team at any point with your questions! 🙌
+
+cc <@!418840881358176257><@!490960786668257303> <@!243162625007943681>
+mdalie says Hey friends, what are the coolest hacks you'd like to see on 1inch for this hackathon?
+xbalbinus says Hey everyone! 👋 
+
+Just wanted to drop a quick intro & overview for 1INCH!
+
+👀 About
+The 1inch Network unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space.
+
+🏆 Prize Overview
+See more on Prizes here 👉  https://hackmoney.ethglobal.co/prizes
+
+The 1inch Network will be awarding 12,000 USD in 1INCH:
+
+🏆 Challenge 1:  Margin trading on the 1inch Limit Order Protocol - 3,000 USD in 1INCH
+
+🏆 Challenge 2: Limit order adapter for the 1inch Liquidity Protocol - 3,000 USD in 1INCH
+
+🏆  Challenge 3: Automated market making strategy for stable coins using the 1inch Limit Order Protocol - 3,000 USD in 1INCH
+
+🏆  Challenge 4: Open Track - 3,000 USD in 1INCH
+
+Workshop:
+https://www.youtube.com/watch?v=7NA69Y3ZSQw
+
+🔗 Important Links
+Webpage
+https://app.1inch.io/
+
+1inch Docs.
+- Introduction
+https://docs.1inch.io/api/
+
+Swagger UI Binance
+https://api.1inch.exchange/swagger/binance/
+
+Swagger UI ETH
+https://api.1inch.exchange/swagger/ethereum/
+
+GitHub
+https://github.com/1inch/1inchProtocol
+emilyhobbs says 
+0x4non says Hey guys, has there been some issue with the workshop? i cant see the video
+4ni4 says It will be rescheduled.
+oxmarco says is 1inch available on any L1 or L2 testnet (kovan, goerli, rinkeby or mumbay)?
+somegamer1337 says Time to print some CHI. Gas is relatively low! Standard was 5 about half an hour ago.
+belac says https://ethereumprice.org/gas/ maybe not the best time yet 😅 since it's been cheaper recently
+coinselector says 👋  Question for the first challenge:  "Margin trading on the 1inch Limit Order Protocol", are there any specific requirements for the margin trading functionality? Do we need to consider liquidation logic or should we focus on order creation with initial margin position?
+sarvesh3262 says Hey 1Inch Team, 
+Question:  I see there are 1inch APIs to get quote and swap transaction data but is there any documentation to estimate best returns and gas via smart contract call/view function?
+
+I tried swap API the response doesn't match the  values shown on https://1inch.exchange/
+
+I see this repo is marked as deprecated 
+https://github.com/1inch/1inchProtocol
+dearnadia says You can build the strategy you want. You can create only liquidation positions or create orders to open and close positions 
+
+The second one is more interesting <:stickers_004:758981992401993769>
+dearnadia says You can use /swap endpoint with disableEstimate=false flag. You need to have sufficient balance of fromTokenAddress and approve to 1inchV3 contract. And you will be able to get estimated gas in response
+sarvesh3262 says is it possible to get the same info using smart contract view function?
+sarvesh3262 says <@!418840881358176257>  Getting internal server error on swap API.  Shared details in DM
+0xgidone says Hi 1Inch Team!
+Is it possible to set your Stop Loss orders on-chain (and not only on the front-end side?)
+dearnadia says <@!842000341791801376> you don't need to use our frontend for hack
+
+and also, it's impossible to get quote from smart contract
+oxmarco says I think by using Chainlink API scraper one could invoke 1Inch API from a smart contract, although having a direct on chain interface would be much more helpful
+dearnadia says You can see an example for stop loss with limit orders here:
+https://github.com/1inch/limit-order-protocol/blob/master/test/ChainLinkExample.js
+dearnadia says And more documentation about Limit Orders here:
+
+🔗 https://docs.1inch.io/limit-order-protocol/
+
+🔗 https://docs.1inch.io/limit-order-protocol-utils
+
+🔗 https://github.com/1inch/limit-order-protocol-utils
+
+🔗 https://github.com/1inch/limit-order-protocol
+solarpunksurfer says Hi skywinder,
+
+I hope you doing great, 
+
+I was wondering, 1inch will be interested that my team builds a  PnL trade analyzer for 1inch with Graph (API)?  By itself could be extremely useful for users. Indeed, most of the crypto wallets do not have it.  Thus, is a great feature after for ages we managing our PnL in a spreadsheet in excel.
+
+Looking forward to seeing your second thoughts.
+
+May the force be with you,
+
+Joshua Eick
+dearnadia says Hi <@!725825203896189040> ! Maybe you have a demo or presentation?
+solarpunksurfer says PnL Tracker -1inch 
+
+Story
+Since 2017 actively using multiple wallets to be able to invest in different cryptocurrencies like: 
+ 
+-Abra-invest and earn an APY in your crypto deposits
+-Coinbase wallet-earn interest
+-Atomic wallet-staking
+-Infinito wallet-deposits
+-jaxx wallet- deposits
+
+-1inch- start using it -how much you save from using the exchange aggregator 
+ 
+Problem
+To be able to track my PnL you have to do it manually in Excel. It’s completely a hassle and extremely a paint point. Indeed, It's critical to understanding your transaction cost, yield farming, and add transparency.
+ 
+ 
+Solution
+Build the product through subgraph form graph sponsored is complete more seamlessness.
+Emulate the dashboard of Bloomberg PnL which is the best investments platform and add extra features and indicators.
+ 
+For instance:
+If you already have a smart contract deployed in 1inch, bootstrapping a new subgraph from this contract can be a good way to get started.
+The following command creates a subgraph that indexes all events of an existing contract.
+ 
+Top Tree features of the PnL tracker:
+1-Transaction costs
+2-Incorporate yield farming 
+3-Easily to import and copied for your tax returns.
+  
+Unique Value Proposition
+Transparency and a crystal clear understanding of your PnL in crypto investments.
+ 
+  
+Call to action:
+Let me know second thoughts, 1inch team.
+
+Looking forward to building the cutting-edge PnL tracker in the blockchain technology space.
+ 
+May the force be with you,
+ 
+Joshua Eick
+filipevenancio.eth says Where can I read how the virtualized pools work?
+sarfang says hey can we get the rinkbey addresses for the 1inch token contract, the GovernanceMothership contract, and GovernanceRewards contract?
+belac says I don't believe they exist
+belac says https://mooniswap.exchange/docs/MooniswapWhitePaper-v1.0.pdf
+here, though mooniswap is deprecated it lives on in the 1inch liquidity protocol
+tobowers says ahoy. does 1inch have a smart contract API?
+tobowers says Here's what I want to do: zap from one token into two tokens (and then into an LP)
+tobowers says I don't think the API supports two outputs
+tobowers says fwiw would be super cool if 1inch offered zaps - makes total sense with the routing protocol
+tobowers says "I want to deposit 100 matic into the sushi ibWBTC/WBTC LP pool... route me efficiently please"
+belac says Sadly only legacy.1inch.exchange supports zaps and on ETH only, and the lp tokens have to be uniswap LP tokens. 
+But in theory someone could build a zap feature with the 1inch swap API and integrating the pools
+tobowers says yeah that's what I'm going to do for a specific pool for this hackathon, but it's a little tricky because the amounts needed of each token can change between calling your API
+tobowers says that's why I was wondering about a smart contract API where could do the requests as part of a transaction
+belac says there's no way to get a quote (or the swap data) on-chain directly 😕
+Just the API for swaps
+tobowers says yeah I guess you don't really want onchain quotes anyway
+belac says there was this: https://github.com/1inch/1inchProtocol
+
+but it is deprecated now and has some issues that will not ever be resolved.
+tobowers says does the onchain swap API need to know the route or does it figure it out?
+tobowers says are there docs for that somewhere?
+belac says the swap api call on the 1inch v3 router needs the route. it can't figure it out itself
+tobowers says ok - so then I think what I'm doing is probably the best solution...
+tobowers says we have a smart contract wallet so I get the two quotes and figure out how much is needed for both destination tokens, but then I do the swap/swap/deposit all in a single transaction and if that fails I can re-quote
+tobowers says and it's on polygon so I don't really care about gas 🙂
+tobowers says that would actually be a pretty cool and efficient generic zapper for anything with uniswap v2 interface
+tobowers says another hackathon I guess lol
+tobowers says oh hmm - i'm trying to do this: "mint, approve, swap" inside a single transaction, but the 1inch API doesn't return the swap because the account doesn't have enough balance (because the mint hasn't happened)
+belac says disableEstimate=true will stop the balance check, but it will remove a gas price and gas limit to work with
+tobowers says that's great - don't need those anyway since it's part of a multisend
+se3jay says Hey 1inch team! Is there a subgraph available for 1inch? I'm looking to query historical information about liquidity pools. Or is this information maybe available somewhere else?
+belac says endpoint https://thegraph.com/explorer/subgraph/1inch-exchange/oneinch-liquidity-protocol-v2
+schema:
+se3jay says Thanks!!!
+phazejeff says hey 1inch, is there a way to use the `/swap` endpoint on a testnet?
+belac says no
+belac says but you can fork the mainnet and use the /swap endpoint with that
+phazejeff says I'm not sure how I would do that, is there some guide on this?
+belac says https://support.chainstack.com/hc/en-us/articles/900001783063-Forking-Ethereum-mainnet-with-Ganache-CLI
+Try this
+phazejeff says Thanks!
+booleanring says what's the proper way of using the calldata from the `/swap` endpoint in solidity code? I've been trying the following, but it seems to fail so I assume the `msg.value` has to be some other value: ```
+oneInchExchange.call{value: 0}(oneInchData)
+```
+where oneInchData is the `tx.data` from the `/swap` endpoint and `oneInchExchange` is the oneInch v3 address
+belac says if you're in the 1inch discord, you can check out this https://discord.com/channels/730042542229422121/730308064917585920/855849975220535296
+(invite link here: https://discord.gg/FZADkCZ)
+--hopefully this is what you were wondering about
+Philipp | LI.FI says <@!243162625007943681>  <@!418840881358176257> We're working on https://li.finance and we'd like to make heavy use of 1inch. We already tried to reach out to Anton via several people (e.g. from KERNEL) but didn't manage to get to talk to anyone out of your team. We have some general questions about your roadmap and would like to align with you on that. Would it somehow be possible to set up a call?
+tobowers says is the 1inch team still in this room? wondering if I could DM someone to talk through some cross-promotion ideas
+belac says I can get you a form for this
+emilyhobbs says 
+emilyhobbs says Hello and welcome to the <#798164802438561832> channel
+
+Feel free to reach out to the Team at any point with your questions! 🙌
+
+cc <@!418840881358176257> <@!490960786668257303>
+xbalbinus says Hey <@&872824077478420501>  <a:animated_waveBOYE:534848391944077333> 
+
+1inch Network 🛠 1inch Limit Order Protocol happening now!
+
+Join us here: https://ethglobal.zoom.us/j/82632776364
+4ni4 says let me in plz
+MikeBroco says Че то тихо тут у вас! )))
+MikeBroco says Ау где все крутые разрабы то?
+MikeBroco says ))
+ZombieCoder says mi tuta )
+MikeBroco says Е! Кул!
+ZombieCoder says <@!848597033023569980> вы собираетесь делать проект на 1 inch?
+ZombieCoder says hey there, i have a question on the resources we are allowed to use, 
+
+are we allowed to use moralis to do something like keep data feed on a coin price?
+xoheb says Is there a way to replicate mappings in memory?
+We cannot create mappings in the memory/calldata context, so it makes it tough to replicate the hash map in function parameters...
+Any alternate idea on that?
+For context,
+Im trying to build a multi-swap exit system, where multiple tokens can be swapped back to a desired asset in a single transaction...
+So I need to work on an array of  address => {address[], uint256} mapping which maps token address to a struct of path and amountOutMin to execute multiple sequential swaps on the 1-inch router
+xoheb says <@!243162625007943681>  <@!418840881358176257>
+Or anyone from 1inch team...
+I'm working to build a batched swap router that integrates the 1inch router to execute multiple swaps in a single transaction
+belac says I've never worked with solidity and I'm not sure how to help here.
+this is the only resource that I have on hand  https://github.com/smye/1inch-swap/blob/master/contracts/SwapProxy.sol
+xoheb says building a batching system to club multiple swaps in one
+xoheb says need help with ecrecover function to execute multiple permit implementations in a loop
+xoheb says could you connect me to a dev from the team?
+belac says <@!418840881358176257> think you could handle this?
+leon_do says It's unrelated to 1inch but here's a sneak peak of my hackathon project. There's some yield baked in the game 😉 <@!243162625007943681> <@!490960786668257303>
+devtooligan says Does anyone have any Rinkeby eth they could spare?  We've been planning on using Ropsten all week and accumulating Ropsten eth but now we have to switch to Rinkeby. 😩  We could also trade you for Ropsten eth or Kovan eth.  
+
+Our address:  0xE7aa7AF667016837733F3CA3809bdE04697730eF 🙏 🙏 🙏
+MikeBroco says more suitable for decentraland)
+awliang says 
+awliang says Hello and welcome to the <#798164802438561832> channel <:nfteth:822186186016948314> 
+
+Feel free to reach out to the 1inch Team at any point with your questions! 
+
+Just giving you all a quick snapshot for you to get quickly acquainted!
+
+
+👀 **ABOUT** 
+The **1inch Network** unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space. The initial protocol of the 1inch Network is a DEX aggregator solution that searches deals across multiple liquidity sources, offering users better rates than any individual exchange. This protocol incorporates the Pathfinder algorithm which finds the best paths among different markets over 180 liquidity sources on Ethereum, BNB Chain, Polygon, Avalanche, Optimistic Ethereum, Arbitrum and Gnosis Chain. In just over two years the 1inch DEX aggregator has reached 2M users and surpassed $150B in overall trading volume. The 1inch Aggregation Protocol facilitates cost-efficient and secure swap transactions across multiple liquidity sources. 
+
+
+🏆 **PRIZE OVERVIEW **
+
+🥇 1st: $8000 in 1INCH
+🥈 2nd: $5000 in 1INCH
+🥉 3rd: $3000 in 1INCH
+
+**↓ Full Prize Breakdown Here ↓ **
+https://ethamsterdam.ethglobal.com/prizes/
+
+
+🚀 **WORKSHOP** 
+**A dive into 1inch Limit Order Protocol and API**
+Saturday, April 23 @ 00:00 (Friday night at midnight)
+w/ Kirill Kuznetsov
+
+
+🔗 **IMPORTANT LINKS**
+Official Github: https://github.com/1inch
+Docs: https://docs.1inch.io/ 
+Bounties: https://1inch.notion.site/1inch-Bounties-a15b4518972f47c0854b7a785c17f99d
+mgoesdistance.eth says Hey <@720407640131240026> ! Have you guys got any spare tickets to the 1inch party at ETH Amsterdam?
+awliang says We do not 😅
+mgoesdistance.eth says Or whoever is the 1inch person in charge lol
+newway1220 says Hey everyone, I'm looking for 1inch mentors, I have something related to swaps using the     struct AggregationRouterV4.SwapDescription that could solve my problem of using uniswap SDK based on pairs and so needing multiple calls.
+Gabe H says Hey guys, we have a little smart contract problem here. Would love some help
+Natalia | 1inch says hello Gabe, how can we help? (oh I am afraid it might be too late 😞 )
+Natalia | 1inch says do you have any questions? How can we assist?
+Gabe H says lol yeah definitely too late now
+awliang says 
+awliang says Hello and welcome to the <#798164802438561832> channel <:nfteth:822186186016948314> 
+
+Feel free to reach out to the 1inch Team at any point with your questions! 
+
+Just giving you all a quick snapshot for you to get quickly acquainted!
+
+
+👀 **ABOUT** 
+The **1inch Network** unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space. The initial protocol of the 1inch Network is a DEX aggregator solution that searches deals across multiple liquidity sources, offering users better rates than any individual exchange. This protocol incorporates the Pathfinder algorithm which finds the best paths among different markets over 180 liquidity sources on Ethereum, BNB Chain, Polygon, Avalanche, Optimistic Ethereum, Arbitrum and Gnosis Chain. In just over two years the 1inch DEX aggregator has reached 2M users and surpassed $150B in overall trading volume. The 1inch Aggregation Protocol facilitates cost-efficient and secure swap transactions across multiple liquidity sources. 
+
+
+🏆 **PRIZE OVERVIEW **
+
+🥇 1st: $8000 in 1INCH
+🥈 2nd: $5000 in 1INCH
+🥉 3rd: $3000 in 1INCH
+
+**↓ Full Prize Breakdown Here ↓ **
+https://ny.ethglobal.com/prizes/
+
+
+🚀 **WORKSHOP** 
+*More information soon!*
+
+🔗 **IMPORTANT LINKS**
+Official Github: https://github.com/1inch
+Docs: https://docs.1inch.io/
+abid_dclimate says https://help.1inch.io/en/articles/5778756-vpn-restricted-territory ,  hey does this mean that I can't use the 1inch network while in the US?
+roundelephant says That geo-fence only applies to the 1inch front-end as it is owned and operated by the 1inch Foundation. The smart contracts are decentralized and permissionless.
+bormaj says I'm looking to use the Spot Price Aggregator to supply a reference price for an off-chain python application - what's the best way to go about pulling this data in python?
+foobarbaz says hey, are you guys around? We have a question about the Aggregation Protocol V4 -- is the contract on Github? we can't find it
+foobarbaz says looking for the implementation behind this fxn: 
+```function swap(
+  contract IAggregationExecutor caller,
+  struct AggregationRouterV4.SwapDescription desc,
+  bytes data
+) external returns (uint256 returnAmount, uint256 gasLeft)```
+belac says Hey! the contract is not on github but it is on etherscan at the 1inch.eth ENS
+belac says you can pull the data similarly to how you would with javascript, I might be able to make a python example for you
+bormaj says I was able to find a lightweight API wrapper in another github repo that I'm working off of, this should work for now
+foobarbaz says got it -- https://etherscan.io/address/0x1111111254fb6c44bac0bed2854e76f90643097d#code -- the swap interface here is different than in the docs:
+```    function swap(
+        IAggregationExecutor caller,
+        SwapDescription calldata desc,
+        bytes calldata data
+    )
+        external
+        payable
+        returns (
+            uint256 returnAmount,
+            uint256 spentAmount,
+            uint256 gasLeft
+        )```
+foobarbaz says Is the one on Etherscan the one to use then?
+foobarbaz says cc <@243162625007943681> thanks for the help!
+belac says I do see they're slightly different but the input parameters are the same, the output parameters seem to be slightly different
+belac says yeah
+foobarbaz says thanks! Is the interface the same on testnet? On which testnets is the Aggregation Router V4 deployed, & what are the addresses?
+belac says there are no testnet deployements
+belac says you have to use a forked mainnet
+foobarbaz says Got it -- which L2s are you deployed on? We're looking to deploy on Optimism, Arbitrum, and maybe Polygon
+belac says 1inch aggregation router is deployed on all the ones you just listed
+belac says to find the address, check the /approve/spender endpoint on the API at docs.1inch.io
+belac says if anyone else needs an example here's one
+defivas says Hey there, we've submitted Velvet.Capital - building a DeFi protocol that helps people & institutions create tokenized index funds, portfolios & other financial products with additional yield and using 1inch for smart routing during portfolio creation and rebalancing! Please check us out 🙂
+kevinh says Good morning! Are there 1inch people still here for judging? We submitted to the 1inch sponsor prize but it looks like the booth has been cleared.
+belac says <@239832438291955712> ^
+awliang says 
+awliang says Hello and welcome to the <#798164802438561832> channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the 1inch Team at any point with your questions!
+
+👀 **ABOUT**
+The **1inch Network** unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space. The initial protocol of the 1inch Network is a DEX aggregator solution that searches deals across multiple liquidity sources, offering users better rates than any individual exchange. This protocol incorporates the Pathfinder algorithm which finds the best paths among different markets over 180 liquidity sources on Ethereum, BNB Chain, Polygon, Avalanche, Optimistic Ethereum, Arbitrum and Gnosis Chain. In just over two years the 1inch DEX aggregator has reached 2M users and surpassed $150B in overall trading volume. The 1inch Aggregation Protocol facilitates cost-efficient and secure swap transactions across multiple liquidity sources. 
+
+
+🏆 **PRIZE OVERVIEW**
+
+**Raise utilisation of 1inch network fusion protocol through using Fusion API in you project.**
+🥇 First place: 4000 USD
+🥈 Second place: 3000 USD
+🥉 Third place: 2000 USD
+
+**Raise transparency of 1inch Network Fusion through implementing dashboard with stats about 1inch network resolvers.**
+🥇 First place: 3500 USD
+🥈 Second place: 2000 USD
+🥉 Third place: 1000 USD
+
+**Open track focused on open source. Any project with meaningful impact to the community.**
+**Amount Prize:** 4500 USD
+
+
+**↓ Full Prize Breakdown Here ↓**
+https://ethglobal.com/events/tokyo/prizes
+
+
+🚀 **WORKSHOP**
+The Future of DeFi is here: introducing inch Fusion and how to work with it
+Time: 06:00 PM JST – Apr 14, 2023
+Location: 5th Floor | Workshop Room 2
+
+
+🔗 **IMPORTANT LINKS**
+https://docs.1inch.io
+.naddison says How would one get the orders that were settled by each resolver? Is there a public Graph?
+RA says I'm looking for the 1inch Fusion API documentation but can't find it.
+If the documentation exists, I would like you to send me the URL of the page where the documentation is written.
+swiiny12 says Hey! I'm looking to execute fusion swap from a frontend from a while now, I didn't find my way in the doc, can you please help me? 🙏
+xentoshi says hey team, 
+we are from zkchat&pay team.. didn't make it to present in front of you today, but we'd be so happy if you can check our hot implementation of fusion in our project ❤️‍🔥
+awliang says 
+awliang says Hello and welcome to the <#798164802438561832> channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the 1inch Network Team at any point with your questions!
+
+👀 **ABOUT**
+The 1inch Network unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space.
+
+
+🏆 **PRIZE OVERVIEW**
+
+Increase utilization of the 1inch network fusion protocol through using Fusion API in your project.
+🥇 First place: 4000 USD
+🥈 Second place: 3000 USD
+🥉 Third place: 2000 USD
+
+Create a Yield Optimization protocol for the 1inch delegation of Unicorn Power.
+🥇 First place: 3500 USD
+🥈 Second place: 2000 USD
+🥉 Third place: 1000 USD
+
+Open track focused on open source. Any project with meaningful impact to the community.
+🥇 First place: 2500 USD
+🥈 Second place: 1500 USD
+🥉 Third place: 500 USD
+
+Public link https://1inch.notion.site/ETHLisbon-Bounties-08834d3b91c645a9b8a551e2c9df88e6
+
+**↓ Full Prize Breakdown Here ↓**
+https://ethglobal.com/events/lisbon/prizes
+
+
+🚀 **WORKSHOP**
+1inch Fusion: a new standard for decentralized swaps
+Time: 06:00 PM WEST – May 12, 2023
+Location: 2nd Floor | Workshop Room 1
+
+
+🔗 **IMPORTANT LINKS**
+https://docs.1inch.io
+seanwbren says Is there a "widget" I can put in my app that uses Fusion mode? 
+Basically a widget similar to this:
+greylotus0 says Hi, I have a question regarding integration Fusion on a Dapp
+greylotus0 says Good morning, can anyone help me?
+nattop1inch says Dear hackers, 
+if you require prompt technical assistance in this channel, kindly proceed to the #api chat on the 1inch Discord server. Thank you for your comprehension and cooperation. 🙏🏼  https://discord.com/login?redirect_to=%2Fchannels%2F730042542229422121%2F730308517969526815
+belac says currently there is this https://github.com/1inch/embedded-widget
+
+Though due to security policies it may not always work in specific browsers, chrome does (or should) work though
+
+Do note that this is just an iframe of the 1inch front end so it has both fusion and legacy swap
+belac says sure, what is your question?
+gama266 says hey has anyone been able to send swap orders thru the fusion sdk? i have a few questions
+jordan.public says https://ethglobal.com/showcase/guardian-oracle-keeper-protocol-rpcws
+awliang says 
+awliang says Hello and welcome to the <#798164802438561832> channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the 1inch Network Team at any point with your questions!
+
+👀 **ABOUT**
+The **1inch Network** unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space. The initial protocol of the 1inch Network is a DEX aggregator solution that searches deals across multiple liquidity sources, offering users better rates than any individual exchange. This protocol incorporates the Pathfinder algorithm which finds the best paths among different markets over 180 liquidity sources on Ethereum, BNB Chain, Polygon, Avalanche, Optimistic Ethereum, Arbitrum and Gnosis Chain. In just over two years the 1inch DEX aggregator has reached 2M users and surpassed $150B in overall trading volume. The 1inch Aggregation Protocol facilitates cost-efficient and secure swap transactions across multiple liquidity sources. 
+
+
+🏆 **PRIZE OVERVIEW**
+
+**Bounty 1: Build an Innovative Application on top of 1inch Network's Fusion API**
+🥇 First place: $4,000 USD 🥈 Second place: $3,000 USD 🥉 Third place: $2,000 USD
+
+**Bounty 2: Build Innovative Solutions on top of 1inch Network's Smart Contracts**
+🥇 First place: $3,000 USD 🥈 Second place: $2,000 USD 🥉 Third place: $1,000 USD
+
+**Bounty 3: Open Track**
+🥇 First place: $2,500USD 🥈 Second place: $1,500 USD 🥉 Third place: $1,000USD
+
+**↓ Full Prize Breakdown Here ↓**
+https://ethglobal.com/events/paris2023/prizes
+
+
+🚀 **WORKSHOP**
+Deep dive into 1inch Fusion
+Time: 05:00 PM CEST – Jul 21, 2023
+Location: Workshop Room 2
+
+
+🔗 **IMPORTANT LINKS**
+https://docs.1inch.io/docs/fusion-swap/introduction
+https://docs.1inch.io/docs/aggregation-protocol/smart-contract/AggregationRouterV5
+https://docs.1inch.io/docs/limit-order-protocol/smart-contract/LimitOrderProtocol#
+https://github.com/1inch
+Misha A says Hey 1inch guys! Who can help us with Fusion?  Very little info about it.
+neeel.eth says Does 1inch aggregation protocol supports native eth swaps?
+tradersnow1inch says Yes
+tradersnow1inch says We can help. 🙂  What sort of specific questions do you have?
+0xdars says Hey is 1inch fusion only offchain or are there contracts we can call onchain directly to route trades?
+neeel.eth says gm! question, I've got 2 api calls where the only difference is the destination token (stETH & rETH) and the calldata the API is giving me back has a different structure. Both have a straight (direct) route ETH -> stETH & ETH -> rETH.
+
+stETH: https://api.1inch.io/v5.2/1/swap?amount=1000000&src=0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE&dst=0xae7ab96520de3a18e5e111b5eaab095312d7fe84&from=0x24509E1F87eDD8fC7c00f0738f45bC70aCe8BD4B&slippage=0.5&disableEstimate=true&receiver=0x62450f4067C79EfdBF2ABd5ae6F089d81cd6672d
+
+rETH: https://api.1inch.io/v5.2/1/swap?amount=1000000&src=0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE&dst=0x6b175474e89094c44da98b954eedeac495271d0f&from=0x24509E1F87eDD8fC7c00f0738f45bC70aCe8BD4B&slippage=0.5&disableEstimate=true&receiver=0x62450f4067C79EfdBF2ABd5ae6F089d81cd6672d
+
+I'm decoding the calldata before calling the swap on your router contract to know how much to transfer (SwapDescription.amount)
+
+`(,IPool.SwapDescription memory desc) = abi.decode(swapData[i][4:], (address, IPool.SwapDescription));`
+swapData[0] = stETH -> succeeds decoding
+swapData[1] = rETH -> fails decoding
+
+The rETH one is much shorter. I've tried ETH->DAI and it's also very short. Not sure why it has different structure. Do you know?
+neeel.eth says stETH:
+```0x12aa3caf00000000000000000000000092f3f71cef740ed5784874b8c70ff87ecdf33588000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe8400000000000000000000000092f3f71cef740ed5784874b8c70ff87ecdf3358800000000000000000000000062450f4067c79efdbf2abd5ae6f089d81cd6672d00000000000000000000000000000000000000000000000000000000000f424000000000000000000000000000000000000000000000000000000000000f2eb6000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001400000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000008200005400003a4060ae7ab96520de3a18e5e111b5eaab095312d7fe84a1903eab00000000000000000000000042f527f50f16a103b6ccab48bccca214500c10210020d6bdbf78ae7ab96520de3a18e5e111b5eaab095312d7fe8480a06c4eca27ae7ab96520de3a18e5e111b5eaab095312d7fe841111111254eeb25477b68fb85ed929f73a960582cfee7c08```
+
+rETH:
+```0xf78dc25300000000000000000000000062450f4067c79efdbf2abd5ae6f089d81cd6672d000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f4240000000000000000000000000000000000000000000000000000000006f9e37e800000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000180000000000000003b6d034060a26d69263ef43e9a68964ba141263f19d71d51cfee7c08```
+
+The size different is quite noticable but both are the exact same request except for destination token
+belac says 👋  sorry for the delay in response. 
+if you'll notice the rETH function selector is different 0xf78dc253
+if you want to **force** the function selector 0x12aa3caf then you'll need to use compatibility mode = true. I think it might just be `compatibility` now with v5.2 API though
+belac says 
+belac says the function in the rETH swap is `unoswapTo` which means there is a specific destination address *and* the only liquidity pools in use is uniswap v2 like pools
+belac says 1inch fusion doesn't have the user do any routing, it's the resolvers that do the routing. Likely it's off-chain but it could be on-chain, like if they referenced a uniswap quoter or something 😄 
+
+the fusion contracts just allow-list certain resolvers contracts, or workers
+neeel.eth says You saved my life right there, compatibility made it ❤️
+belac says amazing!
+neeel.eth says Are you at the venue?
+belac says I'm not there myself :(
+belac says I believe <@438140396153995268> is
+neeel.eth says Sooo now I got consistant calldata buuuuut my second swap is failing and I'm not sure why...
+
+```
+    function executeSwaps(address _pool, bytes[] calldata swapData) external payable nonReentrant {
+      IPoolFactory factory = IPoolFactory(controller.getPoolFactory());
+      
+      if (!factory.isPool(_pool)) {
+        revert InvalidPool();
+      }
+
+      uint256[] memory amounts = new uint256[](swapData.length);
+      for(uint i = 0; i < swapData.length; i++) {
+        (,IPool.SwapDescription memory desc) = abi.decode(swapData[i][4:], (address, IPool.SwapDescription));
+        (bool success, bytes memory returnData) = controller.getOneInch().call{value: desc.amount}(swapData[i]);
+
+        if (!success) {
+          revert DexSwapFailed();
+        }
+        (uint256 returnAmount,) = abi.decode(returnData, (uint256,uint256));
+        amounts[i] = returnAmount;
+      }
+
+      IPool(_pool).deposit(amounts);
+    }
+```
+it's throwing `DexSwapFailed`
+`swapData` it's made of 2 calldatas one for stETH which works, but the second one with rETH it's failing now, not sure what's different... any clues?
+neeel.eth says Another thing is I'm getting "insufficient liquidity" when trying to SWAP ETH to DAI or USDC 👀 
+
+```https://api.1inch.io/v5.2/1/swap?amount=10000&src=0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE&dst=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&from=0x24509E1F87eDD8fC7c00f0738f45bC70aCe8BD4B&slippage=5&disableEstimate=true&receiver=0x62450f4067C79EfdBF2ABd5ae6F089d81cd6672d&compatibility=true````
+belac says 10000 wei of ETH -> USDC, that's 0.00000000000001 ETH -> USDC 😄
+belac says unfortunately not exactly sure on this <:monkaHmm:663779021892354098> 
+unless you forked the network and slippage has occured.
+neeel.eth says Oooh so it’s too low ok
+neeel.eth says I set slippage to 50%. I’m using a fork of mainnet
+neeel.eth says I’ve also been told to set partial fullfills to false
+neeel.eth says But still failing
+neeel.eth says Sometimes it succeeds though (same code)
+neeel.eth says https://dashboard.tenderly.co/shared/fork/simulation/947d0563-fb4f-4273-81c1-c9ad6f099505
+neeel.eth says That’s a failed case
+neeel.eth says https://dashboard.tenderly.co/shared/fork/simulation/c00c6af3-fd7a-43df-a0a4-a8b26c071c33
+neeel.eth says That’s a success case
+belac says https://dashboard.tenderly.co/shared/fork/simulation/947d0563-fb4f-4273-81c1-c9ad6f099505/debugger?trace=0.4.3.1.0.0.1.1
+no idea why success wasn't `true` here as the balance adjustments were all correct <:monkaHmm:663779021892354098>
+neeel.eth says I May just use Uniswap as backup if success false, fake it til you mark it approach 😂
+neeel.eth says I tried, hard 😔
+crocovivant says Hey I've got a question
+crocovivant says did you guys have seen any project combining Near and 1inch ?
+crocovivant says Is it possible to use 1inch on a front-end application deployed on Near BOS ?
+tradersnow1inch says See comment below ⬇️
+roundelephant says This is actually possible (just like Lido’s front end is deployed on Near BOS)
+crocovivant says thanks
+roundelephant says Only reason I know this is because I met a NEAR Dev the other night and he showed me on his phone how this can be done. And I asked him this specific question after he showed me the Lido example. 
+
+1inch front end is not open source so whatever you build would have to be from scratch.
+crocovivant says thank you for your answer. Definitly good to know. Will try it now. ty
+sogol_malek says Hello 1Inch guys! Here's what we built with 1Inch Protocol, Metamask and Airstack!!
+
+**Name**: 🤖 Xtreamly
+**Description**: Hacked RPC Nodes & LUA Libraries for Scripting as-a-Service!💰🤖 Control Your Ethereum Account with AI-Powered Scripting.🌐 Apple Store-like outlet with Data-driven Scripts for your Accounts,tailored to each protocol.🎯Customize Your DeFi Experience,goodbye multiple  seed phrases
+**Github**: https://gitlab.com/SogolHack/xtreamly-hackethon
+
+Public URL: https://ethglobal.com/showcase/xtreamly-bqyjk
+roundelephant says Hey everyone! We're hear at the 1inch booth if you want to do a live demo. Please limit it to 3-minutes and 1-minute of questions afterwards!
+daosasha says 1. L3arn 
+2. 4337
+3. Poseidon
+4. Stake Garden
+5. Wallet Hooper
+6. Ratatouille500
+7. Median Price Oracles (Uniswap v4
+8. 1shield
+9. Gaston
+10. zkSwap on iOS
+11. Kinetix
+12. PayFlow
+13. 1wallet
+14. ZkAlpha
+15. SwapChat
+16. ODX
+17. Xtreamly
+18. Bob the solver
+19. Chadswap
+20. Vouch
+21. ZkMask @yash2399
+22. NoxFi <@236864572349349889>
+23. CreditDecentrale <@1017754669612798003>
+24. TyphoonCashX
+daosasha ETHCC6 sorry for delayed response, [23 Jul 2023, 12:11:15]:
+25. Uni-explorer
+26. SP95 Protocol
+27. TeleSafe @spodoo
+daosasha says Xtreamly?
+daosasha says 25. Uni-explorer
+sogol_malek says already pitched 🙂
+daosasha says Team "NAL - Now Any Loans" Are you going to pitch your solution ?
+defivas says Our track submission didn’t go through before, just talked to organizers and they pushed it 15mins ago - could you please check project “Placeholder 4337” ? 
+
+Built an account abstraction enabled derivative trading platform.
+defivas says You might need to refresh the project list to see it
+defivas says 🙏🙏🙏
+maadhavsharma says When are the results for the skateboard raffle going to be out?
+arjanjohan says i won it, they dm'ed me on tg
+awliang says 
+awliang says Hello and welcome to the <#798164802438561832> channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the 1inch Team at any point with your questions!
+
+👀 **ABOUT**
+The 1inch Network seamlessly unites multiple decentralized protocols, empowering users to perform efficient, user-friendly and secure operations in the Web3 space.
+
+
+🏆 **PRIZE OVERVIEW**
+
+**Bounty 1 - Build an Innovative Application on top of 1inch Network's Fusion API**
+🥇 First place: $2,500USD
+🥈 Second place: $1,500 USD
+🥉 Third place: $1,000USD
+
+**Bounty 2: Build Innovative Solutions on top of 1inch Network's Token Plugins**
+🥇 First place: $2,500USD
+🥈 Second place: $1,500 USD
+🥉 Third place: $1,000USD
+
+**Bounty 3: Enhance your app with 1inch Developer Portal APIs**
+🥇 First place: $2,500USD
+🥈 Second place: $1,500 USD
+🥉 Third place: $1,000USD
+
+**Bounty 4: Open Track**:
+🥇 First place: $2,500USD
+🥈 Second place: $1,500 USD
+🥉 Third place: $1,000USD
+
+**↓ Full Prize Breakdown Here ↓**
+https://ethglobal.com/events/newyork2023/prizes
+
+
+🚀 **WORKSHOP**
+🛠️ Building Dapps with 1inch Developer Portal
+Time: 05:00 PM EDT – Sep 22, 2023
+Location: Workshop Room 1
+
+
+🔗 **IMPORTANT LINKS**
+https://docs.1inch.io/docs/fusion-swap/introduction
+https://docs.1inch.io/docs/aggregation-protocol/smart-contract/AggregationRouterV5
+https://docs.1inch.io/docs/limit-order-protocol/smart-contract/LimitOrderProtocol
+https://github.com/1inch
+https://portal.1inch.dev/
+https://github.com/1inch/token-plugins
+https://www.youtube.com/watch?v=a9uCqWmH-HE

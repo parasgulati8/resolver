@@ -1,0 +1,343 @@
+
+awliang says 
+awliang says Hello and welcome to the <#1092169448791756881> channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the Airstack Team at any point with your questions!
+
+👀 **ABOUT**
+**Airstack** is a developer platform that enables you to easily query and integrate any web3 on-chain data and related off-chain data into your apps. More powerful than previous solutions, Airstack enables complex queries in GraphQL that cut across on-chain/off-chain, cross-chain, cross-project, and identity data, and enables developers to not have to host their own infrastructure to integrate and serve relevant ecosystem data to end-users.
+
+Featured integrations available at ETH Tokyo 2023: #Ethereum #Farcaster #NFTMetaData #NFTImages #NFTSales #Traits #Royalties #TokenBalances #Aggregations #Snapshots
+
+
+🏆 **PRIZE OVERVIEW**
+
+🔥Best overall use of Airstack APIs -- $3,000
+👯 Best use of Airstack APIs in a consumer application -- $1,750
+🗄 Best use of Airstack APIs in a business application or dev tooling -- $1,750
+🪄 Best implementation of a project on our Ideas List -- $2,000
+
+**Implementation of Airstack schemas for writing an in-demand Subgraph from our Ideas List:** 
+🥇 $1,000
+🥈 $250
+🥉 $250
+
+
+**↓ Full Prize Breakdown Here ↓**
+https://ethglobal.com/events/tokyo/prizes
+
+
+🚀 **WORKSHOP**
+Building data-aware applications 
+Time: 4:00 PM JST – Apr 14, 2023
+Location: 5th Floor | Workshop Room 1
+
+
+🔗 **IMPORTANT LINKS**
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-Hackathons-2023-31417caf62aa45aca04a1cc612c24971
+https://t.me/+uW6ypo49TcZmMGEx
+https://docs.airstack.xyz
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-Hackathons-2023-31417caf62aa45aca04a1cc612c24971
+ipeciura.eth says Hi everyone! We have updated our ETHGlobal hacker page with more ideas for the hackathon!
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-2023-31417caf62aa45aca04a1cc612c24971
+0x4ka says nft rentals with airstack.
+ipeciura.eth says Hello and welcome to the sponsor-airstack channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the Airstack Team at any point with your questions!
+
+👀 ABOUT
+Airstack is a developer platform that enables you to easily query and integrate any web3 on-chain data and related off-chain data into your apps. More powerful than previous solutions, Airstack enables complex queries in GraphQL that cut across on-chain/off-chain, cross-chain, cross-project, and identity data, and enables developers to not have to host their own infrastructure to integrate and serve relevant ecosystem data to end-users.
+
+Featured integrations available at ETH Tokyo 2023: #Ethereum #Farcaster #NFTMetaData #NFTImages #NFTSales #Traits #Royalties #TokenBalances #Aggregations #Snapshots
+
+
+🏆 PRIZE OVERVIEW
+
+🔥Best overall use of Airstack APIs -- $3,000
+👯 Best use of Airstack APIs in a consumer application -- $1,750
+🗄 Best use of Airstack APIs in a business application or dev tooling -- $1,750
+🪄 Best implementation of a project on our Ideas List -- $2,000
+
+Implementation of Airstack schemas for writing an in-demand Subgraph from our Ideas List: 
+🥇 $1,000
+🥈 $250
+🥉 $250
+
+
+↓ Full Prize Breakdown Here ↓
+https://ethglobal.com/events/tokyo/prizes
+sey323 says Hello. What kind of blockchain does this API support?
+I would like to experiment with a testnet.
+ipeciura.eth says Hi <@806453232028876811> we currently support Ethereum and Polygon mainnet. No testnets. 
+
+We encourage you to poke around https://app.airstack.xyz/ for inspiration. If you decide to build on Polygon we can send you some Matic to play around.
+sey323 says I see. 
+I have already confirmed that as well. Additional question, is it possible to search NFTs created in Layer2?
+ipeciura.eth says On Polygon - yes.
+sey323 says Ok. Thanx
+taionewgate says <@960546692585910303> i can't get floor price of nft in opensea ( ethereum network )
+kf9498 says There were a lot of chopsticks remained.
+I think you can take chopsticks there!!
+0x4ka says <@960546692585910303> 
+Thank you for helping our building!!
+Name: 
+Streaming NFT
+
+Description: 
+A Wallet with a NFT rental function that allows you to rent when you need it and lend it when you don't need it. Rentals can be from just 1 second to indefinitely and Renter just pay for while using.
+
+DEMO:
+https://eth-global-tokyo.vercel.app/
+
+Github: 
+https://github.com/synschismo/eth-global-tokyo/
+ipeciura.eth says Hi - did you submit on the dashboard? Just checking, if not, I will add you to our internal tracker myself
+0x4ka says We submitted!
+StreamNFT🔥
+0x4ka says <@960546692585910303> here is public page!
+
+https://ethglobal.com/showcase/streaming-nft-with-wallet-n559o
+ipeciura.eth says Thank you again to all ETH Global 2023 teams for your awesome Airstack projects!
+
+Here are the winning Airstack powered projects, congrats!!!
+
+🔥 Best Overall Use of Airstack: Satori Drop — $3000.00
+👯 Best Use in Consumer Application: 0xMarket — $1750.00
+🗄 Best Use in a Business Application or Tooling: Apeify — $1750.00
+
+🪄 🥇 Best Implementation of an idea on our Idea List: Wave 🌊 — $2000.00
+🪄 🥈 2nd Best Idea Implementation: H3aven - Gata (Governance for Data) — $1500.00
+
+As mentioned above, there were so many great projects build with Airstack that it was very very hard for our team to cut the list to just 5. We'll be circling back soon with rewards for all of the teams.
+awliang says 
+awliang says Hello and welcome to the <#1092169448791756881> channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the Airstack Team at any point with your questions!
+
+👀 **ABOUT**
+**Airstack** is a developer platform that enables you to easily query and integrate any web3 on-chain data and related off-chain data into your apps. More powerful than previous solutions, Airstack enables complex queries in GraphQL that cut across on-chain/off-chain, cross-chain, cross-project, and identity data, and enables developers to not have to host their own infrastructure to integrate and serve relevant ecosystem data to end-users.
+
+The Airstack AI Assistant enables you to query natural language inputs (e.g. “show me all tokens held by Vitalik.eth”) — a great way to get started if you’re new to GraphQL.
+
+
+🏆 **PRIZE OVERVIEW**
+
+🥇 Best overall use of Airstack APIs — $3,000
+🥈 2nd best use of Airstack APIs — $2,500
+🥉 3rd best use of Airstack APIs — $2,000
+🎉 4th best use of Airstack APIs — $1,500
+🎖 5th best use of Airstack APIs — $1,000
+
+**↓ Full Prize Breakdown Here ↓**
+https://ethglobal.com/events/lisbon/prizes
+
+
+🚀 **WORKSHOP**
+Web3 data APIs for builders, with AI and GraphQL
+Time: 05:30 PM WEST – May 12, 2023
+Location: 2nd Floor | Workshop Room 3
+
+
+🔗 **IMPORTANT LINKS**
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-Hackathons-2023-31417caf62aa45aca04a1cc612c24971
+https://t.me/+uW6ypo49TcZmMGEx
+https://docs.airstack.xyz
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-Hackathons-2023-31417caf62aa45aca04a1cc612c24971
+.sinane says Hi, can we get data from testnet with airstack ?
+ipeciura.eth says Hi Sean, it seems we connected on Telegram. Pasting the same just in case:
+at the moment we only have Etehruem and Polygon mainnets. If you're planning to hack - we can send you some Matic to get you started on Polygon.
+anson5805 says Hi <@960546692585910303> can i have some Matic as well? was trying to query from mumbai as well:
+```0x33e143139d43bCD0ABa3D6a05de0A32d8392a375```
+ipeciura.eth says I see you also got it from Telegram  🙂
+xquietude says Is it possible and not too difficult to fetch all DAOs that an address is eligible to participate in ? And fetch possible delegates of it
+ipeciura.eth says Not sure I follow the question - can you share an example?
+ipeciura.eth says We currently don't have DAO-specific information, such as delegates.
+
+However, you can fetch all DAO token holders by entering the contract address.
+jasongoldberg_airstack says Hi <@645968180849934346>  <@596033817433866240> <@688833306464223232> <@410137404431794196> we'd like you and your team to come demo to Airstack
+jasongoldberg_airstack says Hi <@959011964082876416> we'd like your team to come demo to Airstack
+jasongoldberg_airstack says Hi <@585447417441419264>  <@592082761330720808> we'd like your team to come demo to Airstack
+jasongoldberg_airstack says Hi <@547109538659172362> <@746815277513048144> we'd like your team to come demo to Airstack
+jasongoldberg_airstack says Hi <@715794064011821070> we'd like your team to come demo to Airstack
+jasongoldberg_airstack says Hi <@569983346495586314> <@598653878644375573> we'd like your team to come demo to Airstack
+jasongoldberg_airstack says Hi <@961942842228477972>, <@794664562871238708>, <@160874396897116160>, <@624088639713837056> we'd like your team to come demo to Airstack
+jasongoldberg_airstack says Hi <@402826133323644929>, <@303615808129466371> we'd like your team to come demo to Airstack
+jasongoldberg_airstack says Hi <@766058265704136724> we'd like your team to come demo to Airstack
+jasongoldberg_airstack says Hi <@765383501343621151> please come demo to Airstack
+jasongoldberg_airstack says Hi <@1007089154473070632> please come demo to Airstack
+complexiasc says What time until approx are you there for the demos?
+awliang says 
+awliang says Hello and welcome to the <#1092169448791756881> channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the Airstack Team at any point with your questions!
+
+👀 **ABOUT**
+[**Airstack**](https://airstack.xyz/) enables you to easily integrate web3 on-chain data and related off-chain data into your apps.
+
+More powerful than previous solutions, Airstack enables complex queries that combine on-chain, off-chain, cross-chain, cross-project, and identity data, and enables developers to not have to host their own infrastructure to integrate and serve relevant ecosystem data to end-users.
+
+**🤖 The Airstack AI engine 🤖** enables you to query with natural language (e.g. “show me all tokens held by Vitalik.eth, images of his NFTs, and his Lens and Farcaster usernames”) — a great way to get started learning the APIs!
+
+**🔥 New at ETHGlobal Waterloo 2023 🔥** Web3 Identity Resolver APIs: Query across ENS, Lens, Farcaster, POAPs and NFTs with a single Airstack query/response. Build the future of web3 social interoperability with Airstack.
+
+**👩‍💻** Projects building with Airstack include ZK attestation, CRM, marketing engines, ad platforms, portfolio balancers, storefronts, decentralized social, messaging apps, wallets, token-gated membership solutions, data visualization, and more. What will you build?
+
+
+🏆 **PRIZE OVERVIEW**
+
+🥇 Excellent use of Airstack APIs — $2,000
+🥈 Excellent use of Airstack APIs — $2,000
+🥉 Excellent use of Airstack APIs — $2,000
+🎉 Best use of Airstack APIs in a ZK or AI or XMTP project — $2000
+🎖 Best visualization built on top of Airstack APIs — $2,000
+
+**↓ Full Prize Breakdown Here ↓**
+https://ethglobal.com/events/waterloo2023/prizes
+
+
+🚀 **WORKSHOP**
+One API for all your web3 data integrations
+Time: 05:30 PM EDT – Jun 23, 2023
+Location: Workshop Room 3
+
+
+🔗 **IMPORTANT LINKS**
+https://t.me/+uW6ypo49TcZmMGEx
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-Hackathons-2023-31417caf62aa45aca04a1cc612c24971
+https://docs.airstack.xyz/
+jasongoldberg_airstack says Team Airstack is excited to meet everyone today! 
+
+Make sure to join our developer Telegram chat here: https://t.me/+uW6ypo49TcZmMGEx
+
+Airstack team is there 24/7 answering questions from devs
+bufficornqueen says Hi.  Walked by your booth yesterday and now I wished that I asked a few questions. Are you taking appointment times to mentor or is it drop-in?
+ipeciura.eth says Drop-in! Please come by we are here now 👍  I think you already came by but in any case welcome to drop in again.
+bufficornqueen says Thanks.  Will meet you this afternoon.
+tomi2253 says Hi is there a way to find the DAOs an address belongs to?
+sarvesh3262 says Hi,
+If DAO has any token(NFT or erc20), which represent membership. You can check token holding of wallet.  
+
+For example if a wallet holds Nouns DAO or Orange DAO nft, It can be used to check DAO membership
+jasongoldberg_airstack says <@759060462129905704>  <@615301726798348309> <@842056583508262912> <@815394017465466911> we'd like your team to come demo to Airstack please
+jasongoldberg_airstack says <@926084309977284628> we'd like you to come demo to Airstack please
+jasongoldberg_airstack says <@689086990079229969>please come demo to Airstack
+jasongoldberg_airstack says <@930157124846256138> please come demo to airstack
+jasongoldberg_airstack says <@614823331253977104> <@231178461052403714> <@429305681674240000> please come demo to Airstack
+ariutokintumi says Okay
+ipeciura.eth says Airstack Prize announcement:
+https://twitter.com/betashop/status/1673050603008954368?s=20
+awliang says 
+awliang says Hello and welcome to the <#1092169448791756881> channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the Airstack Team at any point with your questions!
+
+👀 **ABOUT**
+**Airstack**: The Easiest way integrate web3 data into your apps.
+
+Airstack enables complex queries that combine on-chain, off-chain, cross-chain, cross-project, and identity data. 1 API for all the integrations you need.
+
+**🤖** **The Airstack AI engine** **🤖** enables you to query with natural language (e.g. “show me all tokens held by Vitalik.eth, images of his NFTs, and his Lens and Farcaster usernames”) — a great way to get started learning the APIs!
+**🆕** **ERC-6551** -- you can now use Airstack to query all details about ERC-6551 token bound accounts and the assets they hold!
+**🆕** **XMTP** -- you can now use Airstack to query if a wallet or social account has XMTP!
+**🔥** **Web3 Identity Resolvers** -- Query across **ENS**, **Lens**, **Farcaster**, **POAPs** and **NFTs** with a single Airstack query/response. Build the future of web3 social interoperability and recommendation engines with Airstack.
+
+
+🏆 **PRIZE OVERVIEW**
+
+🥇 Most Excellent use of Airstack APIs — $3000
+🥇 Excellent use of Airstack APIs — $2000
+🥇 Excellent use of Airstack APIs — $2000
+🎖 6 Runner up use of Airstack APIs — $3000/500 each
+
+**↓ Full Prize Breakdown Here ↓**
+https://ethglobal.com/events/paris2023/prizes
+
+
+🚀 **WORKSHOP**
+Integrate everything! Data APIs: ERC6551, ERC721, ERC1155, ERC20, Lens, Farcaster, POAP, XMTP, more...
+Time: 06:00 PM CEST – Jul 21, 2023
+Location: Workshop Room 1
+
+
+🔗 **IMPORTANT LINKS**
+https://t.me/+uW6ypo49TcZmMGEx
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-Hackathons-2023-31417caf62aa45aca04a1cc612c24971
+https://docs.airstack.xyz
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-Hackathons-2023-31417caf62aa45aca04a1cc612c24971
+jasongoldberg_airstack says hi devs! Make sure to join our developer telegram to chat directly with Airstack devs
+https://t.me/+uW6ypo49TcZmMGEx
+paliiiine says Hi, trying to do the query but you guys don't support POlygon Mumbai?
+salief says Yeah, they just support Ethereum Mainnet and Polygon Mainnet
+paliiiine says Cool I have my query on POlygon, it's all good, i tried it out on the studio. But  I just want to fetch and render it in my Front end. Do I have to use a hook or is a simple fetch possible? I have a very simple query on a onClick. The examples are more complex than what I need really
+yosephks says Hey <@834426455123034145> yeah at the moment we don't, but if you need to test some things out on mainnet, we can provide you w/ some mainnet MATIC 🙏 
+
+Just DM me I'll provide you some
+yosephks says fetch doesn't work as fetch is only for REST API and ours is using GraphQL
+
+You don't necessarily need the hook that is offered by our SDK, but it does make it simpler
+
+Feel free to use any other GraphQL library that you prefer to call Airstack
+
+Also let me know what data are you fetching in particular, I can assist w/ getting the data you need for your app 🙏
+sogol_malek says Hello 1Airstack guys! Here's what we built with 1Inch Protocol, Metamask and Airstack!!
+
+**Name**: 🤖 Xtreamly
+**Description**: Hacked RPC Nodes & LUA Libraries for Scripting as-a-Service!💰🤖 Control Your Ethereum Account with AI-Powered Scripting.🌐 Apple Store-like outlet with Data-driven Scripts for your Accounts,tailored to each protocol.🎯Customize Your DeFi Experience,goodbye multiple  seed phrases
+**Github**: https://gitlab.com/SogolHack/xtreamly-hackethon
+
+Public URL: https://ethglobal.com/showcase/xtreamly-bqyjk
+jasongoldberg_airstack says Good morning Paris!
+
+🏆🏆🏆you must demo to our team in order to get an Airstack prize 🏆🏆🏆
+
+Here are the available prizes:
+
+🥇 Most Excellent use of Airstack APIs — $3000
+
+🥈 Excellent use of Airstack APIs — $2000
+
+🥈 Excellent use of Airstack APIs — $2000
+
+🎖 6 Runner up use of Airstack APIs — $3000/500 each
+
+Each team will get 5 minutes to demo at our booth ⏱
+
+Your implementation of Airstack must be live and fully functional in order to be considered for a prize 👀
+ipeciura.eth says Please come around and do a live demo 🙌
+awliang says 
+awliang says Hello and welcome to the <#1092169448791756881> channel <:nfteth:822186186016948314>
+
+Feel free to reach out to the Airstack Team at any point with your questions!
+
+👀 **ABOUT**
+**Airstack**: The Easiest way integrate everything web3!
+
+ERC6551, NFTs, POAPs, Farcaster, Lens, ERC20, ERC721, ERC1155. Combinations. Snapshots.
+
+Airstack enables complex queries that combine on-chain, off-chain, cross-chain, cross-project, and identity data. 1 API for all the integrations you need.
+
+
+🏆 **PRIZE OVERVIEW**
+
+🥇 Most Excellent use of Airstack APIs — $3000
+🥈 Excellent use of Airstack APIs — $2000
+🥈 Excellent use of Airstack APIs — $2000
+🏃 6 Runner up use of Airstack APIs — $3000/500 each
+
+*Special considerations will be given to apps that use Airstack for ERC-6551, XMTP, Lens, POAP, Farcaster, and ZK use cases.* 
+
+**↓ Full Prize Breakdown Here ↓**
+https://ethglobal.com/events/newyork2023/prizes
+
+
+🚀 **WORKSHOP**
+Integrate everything! NFT, 6551, XMTP, Lens, Farcaster, POAP
+Time: 04:40 PM EDT – Sep 22, 2023
+Location: Workshop Room 2
+
+
+🔗 **IMPORTANT LINKS**
+https://t.me/+uW6ypo49TcZmMGEx
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-Hackathons-2023-31417caf62aa45aca04a1cc612c24971
+https://docs.airstack.xyz
+https://glory-bellflower-ba8.notion.site/Airstack-ETH-Global-Hackathons-2023-31417caf62aa45aca04a1cc612c24971
